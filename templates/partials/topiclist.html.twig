@@ -3,15 +3,18 @@
 {% endif %}
 <ul>
 {% for p in articles|slice(0,maxcount) %}
-  {# If the page isn't published, don't show it... #}
-  {% if not p.header.published is defined or p.header.published %}
-    {% if p.header.media == 'video' %}
-      <li class="video">
-    {% else %}
-      <li class="text">
+    {# If the page isn't published, don't show it... #}
+    {% if not p.header.published is defined or p.header.published %}
+        {% if p.header.media == 'video' %}
+            <li class="video">
+            {% elseif p.header.icon is defined %}
+            <li class="custom">
+                <i class="fa fa-{{p.header.icon}}"></i>
+            {% else %}
+            <li class="text">
+        {% endif %}
+                <a href="{{p.url}}">{{ p.title|e }}</a>
+            </li>
     {% endif %}
-    <a href="{{p.url}}">{{ p.title|e }}</a>
-    </li>
-  {% endif %}
 {% endfor %}
 </ul>
