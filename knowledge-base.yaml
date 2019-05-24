@@ -12,8 +12,8 @@ params:
       topics: true    # show assigned topics in the article header
       time: true      # show reading time in the article header
   front:              # params for the front page content
-    maxrows: 3        # the maximum number of rows on the front page
-    maxentries: 5     # maximum number of articles displayed for each category
+    maxrows: 20       # the maximum number of rows on the front page
+    maxentries: 10    # maximum number of articles displayed for each category
   sidebar:            # params for the sidebar
     maxentries: 5     # maximum number of articles to display in "Popular" and "Latest" sections
     show:
