@@ -1,0 +1,58 @@
+a {
+  color: firebrick;
+}
+
+.body {
+  background: white;
+}
+
+.wrapper {
+  margin: 0 3rem;
+}
+
+.sidebar {
+  background: white;
+}
+
+.header .logo {
+  color: black;
+}
+.header img {
+	max-width: 10em;
+	max-height: 5em;
+}
+.digital {
+  display: block;
+  border-top: 1px solid #eee;
+  padding: .5em 0;
+}
+.social {
+	display: inline-block;
+}
+.social .fab, .social .fas {
+	margin-right: .4em;
+	color: slategray;
+	line-height: 1.2em;
+}
+.website {
+  display: inline;
+  float: right;
+  line-height: 3em;
+}
+.financing {
+  border-bottom: 1px solid #eee;
+  padding: .5em 0;
+}
+.financing span {
+	display: block;
+}
+.fab.fa-rebel {
+  color: #e60000;
+}
+.topiclist li.text:before {
+  content: "\f15c";
+  font-family: "Font Awesome 5 Free";
+}
+.topiclist li.video:before {
+    font-family: "Font Awesome 5 Free";
+}
