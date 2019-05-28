@@ -18,77 +18,7 @@
             {% endif %}
             </h1>
             <div class="digital">
-                <span class="social">
-                {% if (page.header.youtube) %}
-                    <a title="youtube" href="{{page.header.youtube}}"><i class="fab fa-youtube fa-3x"></i></a>
-                {% endif %}
-                {% if (page.header.facebook) %}
-                    <a title="facebook" href="{{page.header.facebook}}"><i class="fab fa-facebook fa-3x"></i></a>
-                {% endif %}
-                {% if (page.header.vimeo) %}
-                    <a title="vimeo" href="{{page.header.vimeo}}"><i class="fab fa-vimeo fa-3x"></i></a>
-                {% endif %}
-                {% if (page.header.spotify) %}
-                    <a title="spotify" href="{{page.header.spotify}}"><i class="fab fa-spotify fa-3x"></i></a>
-                {% endif %}
-                {% if (page.header.soundcloud) %}
-                    <a title="soundcloud" href="{{page.header.soundcloud}}"><i class="fab fa-soundcloud fa-3x"></i></a>
-                {% endif %}
-                {% if (page.header.itunes) %}
-                    <a title="itunes" href="{{page.header.itunes}}"><i class="fab fa-itunes fa-3x"></i></a>
-                {% endif %}
-                {% if (page.header.google) %}
-                    <a title="google" href="{{page.header.google}}"><i class="fab fa-google-play fa-3x"></i></a>
-                {% endif %}
-                {% if (page.header.rss) %}
-                    <a title="rss" href="{{page.header.rss}}"><i class="fas fa-rss-square fa-3x"></i></a>
-                {% endif %}
-                {% if (page.header.overcast) %}
-                    <a title="overcast" href="{{page.header.overcast}}"><i class="fas fa-podcast fa-3x"></i></a>
-                {% endif %}
-                {% if (page.header.stitcher) %}
-                    <a title="stitcher" href="{{page.header.stitcher}}"><i class="fas fa-podcast fa-3x"></i></a>
-                {% endif %}
-                {% if (page.header.playerfm) %}
-                    <a title="playerfm" href="{{page.header.playerfm}}"><i class="fas fa-podcast fa-3x"></i></a>
-                {% endif %}
-                {% if (page.header.podtail) %}
-                    <a title="podtail" href="{{page.header.podtail}}"><i class="fas fa-podcast fa-3x"></i></a>
-                {% endif %}
-                {% if (page.header.podbean) %}
-                    <a title="podbean" href="{{page.header.podbean}}"><i class="fas fa-podcast fa-3x"></i></a>
-                {% endif %}
-                {% if (page.header.fansfm) %}
-                    <a title="fansfm" href="{{page.header.fansfm}}"><i class="fas fa-podcast fa-3x"></i></a>
-                {% endif %}
-                {% if (page.header.podbay) %}
-                    <a title="podbay" href="{{page.header.podbay}}"><i class="fas fa-podcast fa-3x"></i></a>
-                {% endif %}
-                {% if (page.header.tunein) %}
-                    <a title="tunein" href="{{page.header.tunein}}"><i class="fas fa-podcast fa-3x"></i></a>
-                {% endif %}
-                {% if (page.header.iheart) %}
-                    <a title="iheart" href="{{page.header.iheart}}"><i class="fas fa-podcast fa-3x"></i></a>
-                {% endif %}
-                {% if (page.header.listennotes) %}
-                    <a title="listennotes" href="{{page.header.listennotes}}"><i class="fas fa-podcast fa-3x"></i></a>
-                {% endif %}
-                {% if (page.header.podparadise) %}
-                    <a title="podparadise" href="{{page.header.podparadise}}"><i class="fas fa-podcast fa-3x"></i></a>
-                {% endif %}
-                {% if (page.header.castbox) %}
-                    <a title="castbox" href="{{page.header.castbox}}"><i class="fas fa-podcast fa-3x"></i></a>
-                {% endif %}
-                {% if (page.header.chartable) %}
-                    <a title="chartable" href="{{page.header.chartable}}"><i class="fas fa-podcast fa-3x"></i></a>
-                {% endif %}
-                {% if (page.header.twitter) %}
-                    <a title="@{{page.header.twitter}}" href="http://www.twitter.com/{{page.header.twitter}}"><i class="fab fa-twitter fa-3x"></i></a>
-                {% endif %}
-                {% if (page.header.website) %}
-                    <a href="{{page.header.website}}"><i class="fas fa-link fa-3x"></i></a>
-                {% endif %}
-                </span>
+                {% include 'partials/social.html.twig' %}
             </div>
             <div class="details">
                 {% if grav.theme.config.params.articles.show.date %}
@@ -106,16 +36,30 @@
                             {% set authorlist = authorlist|merge(['<a href="'~base_url~'/authors/'~slug~'">'~author~'</a>']) %}
                         {% endif %}
                     {% endfor %}
+                    {% if authorlist|length > 0 %}
                     <span>
                         <i class="fa fa-user"></i>
                         {{ authorlist|join(', ') }}</span>
+                    {% endif %}
                 {% endif %}
                 {% if grav.theme.config.params.articles.show.topics %}
                     {% set catlist = [] %}
                     {% for cat in page.taxonomy.category %}
                         {% set catlist = catlist|merge(['<a href="'~base_url~'/taxonomy?name=category&amp;val='~(cat|url_encode)~'">'~cat~'</a>']) %}
                     {% endfor %}
+                    {% if catlist|length > 0 %}
                     <span>{{ catlist|join(', ') }}</span>
+                    {% endif %}
+                {% endif %}
+                {% set contriblist = [] %}
+                {% for contrib in page.taxonomy.contributor %}
+                    {% set contriblist = contriblist|merge(['<a href="'~base_url~'/taxonomy?name=conrtibutor&amp;val='~(contrib|url_encode)~'">'~contrib~'</a>']) %}
+                {% endfor %}
+                {% if contriblist|length > 0 %}
+                <span>
+                <i class="fas fa-users"></i>
+                {{ contriblist|join(', ') }}
+                </span>
                 {% endif %}
             </div>
             {% if (page.header.funding) or (page.header.patreon) or (page.header.donate) %}
