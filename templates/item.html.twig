@@ -5,7 +5,11 @@
         <section class="header">
             <h1>
             {% if (page.header.logo) %}
-                <img src="/images/{{ page.header.logo }}" />
+                {% if (page.header.logobackground) %}
+                    <img src="/images/{{ page.header.logo }}" style="background: {{page.header.logobackground}}" />
+                {% else %}
+                    <img src="/images/{{ page.header.logo }}" />
+                {% endif %}
             {% else %}
                 {% if page.header.media == 'video' %}
                     <i class="fas fa-video"></i>
