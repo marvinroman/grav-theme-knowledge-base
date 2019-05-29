@@ -52,18 +52,21 @@
                         {% set catlist = catlist|merge(['<a href="'~base_url~'/taxonomy?name=category&amp;val='~(cat|url_encode)~'">'~cat~'</a>']) %}
                     {% endfor %}
                     {% if catlist|length > 0 %}
-                    <span>{{ catlist|join(', ') }}</span>
+                        <span>
+                            <i class="fas fa-hashtag"></i>
+                            {{ catlist|join(', ') }}
+                        </span>
                     {% endif %}
                 {% endif %}
                 {% set contriblist = [] %}
                 {% for contrib in page.taxonomy.contributor %}
-                    {% set contriblist = contriblist|merge(['<a href="'~base_url~'/taxonomy?name=conrtibutor&amp;val='~(contrib|url_encode)~'">'~contrib~'</a>']) %}
+                    {% set contriblist = contriblist|merge(['<a href="'~base_url~'/taxonomy?name=contributor&amp;val='~(contrib|url_encode)~'">'~contrib~'</a>']) %}
                 {% endfor %}
                 {% if contriblist|length > 0 %}
-                <span>
-                <i class="fas fa-users"></i>
-                {{ contriblist|join(', ') }}
-                </span>
+                    <span>
+                    <i class="fas fa-users"></i>
+                    {{ contriblist|join(', ') }}
+                    </span>
                 {% endif %}
             </div>
             {% if (page.header.funding) or (page.header.patreon) or (page.header.donate) %}

@@ -78,6 +78,28 @@
                     {% endfor %}
                     </ul>
             {% endif %}
+        {% elseif taxname == 'contributor' %}
+            {% if taxval %}
+                <section class="topiclist">
+                    <h1>Contributor: {{ taxval }}</h1>
+                    {% include 'partials/topiclist.html.twig' with {'articles': taxonomy.findTaxonomy({(taxname): taxval})} %}
+                </section>
+            {% else %}
+                <section>
+                    <h1>Contributors</h1>
+                    <ul>
+                    {% for contributor in taxonomy.taxonomy["contributor"]|keys|sort %}
+                        {# Check to see if a dedicated author page exists #}
+                        {% set slug = contributor|hyphenize|url_encode %}
+                        {% set p = page.find('/contributor/'~slug) %}
+                        {% if p == null %}
+                            <li><a href="{{ base_url }}/taxonomy?name=contributor&amp;val={{ contributor|url_encode }}">{{ contributor }}</a></li>
+                        {% else %}
+                            <li><a href="{{ base_url }}/contributor/{{slug}}">{{ contributor }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+            {% endif %}
         {% endif %}
     {% else %}
         <section>
@@ -86,6 +108,7 @@
                 <li><a href="{{ page.url }}?name=category">Categories</a></li>
                 <li><a href="{{ page.url }}?name=tag">Tags</a></li>
                 <li><a href="{{ page.url }}?name=author">Authors</a></li>
+                <li><a href="{{ page.url }}?name=contributo">Contributors</a></li>
             </ul>
         </section>
     {% endif %}
