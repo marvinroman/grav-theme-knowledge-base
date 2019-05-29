@@ -1,6 +1,9 @@
                 <span class="social">
                 {% if (page.header.website) %}
-                    <a href="{{page.header.website}}"><i class="fas fa-link fa-3x"></i></a>
+                    <a title="webpage" href="{{page.header.website}}"><i class="fas fa-link fa-3x"></i></a>
+                {% endif %}
+                {% if (page.header.wiki) %}
+                    <a title="wiki" href="{{page.header.wiki}}"><i class="fab fa-wikipedia-w fa-3x"></i></a>
                 {% endif %}
                 {% if (page.header.youtube) %}
                     <a title="youtube" href="{{page.header.youtube}}"><i class="fab fa-youtube fa-3x"></i></a>
