@@ -7,10 +7,10 @@
     {% if not p.header.published is defined or p.header.published == true %}
         {% if p.header.media == 'video' %}
             <li class="video">
-            {% elseif p.header.icon is defined %}
+        {% elseif p.header.icon is defined %}
             <li class="custom">
                 <i class="fas fa-{{p.header.icon}}"></i>
-            {% else %}
+        {% else %}
             <li class="text">
         {% endif %}
                 <a href="{{p.url}}">{{ p.title|e }}</a>
